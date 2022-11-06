@@ -33,7 +33,9 @@ def imprimeMatriz(matriz):
         print()
 
 
-def registraJogada(col: int, caracter: str):
+def registraJogada(indice_jogada: int, caracter: str):
+    
+    col = (2 * indice_jogada) - 1 
     
     if (matriz[0][col] != "_"):
         if (col == 1):
@@ -64,7 +66,6 @@ def registraJogada(col: int, caracter: str):
 #             #     count_pontuacao += 1
                 
                 
-                
 #     return count_pontuacao
 
 def pontuacaoVertical(matriz: str, caracter_jogador: str):
@@ -81,11 +82,12 @@ def pontuacaoVertical(matriz: str, caracter_jogador: str):
                     count_4 += 1
                     if (count_4 == 4):
                         count_pontuacao += 1
-                        list_columns_pts.append(coluna)
+                        indice_col = abs(math.ceil(coluna/2))
+                        list_columns_pts.append(indice_col)
                 else:
                     count_4 = 0
                         
-    print(f"\nPontuação coluna(s): {list_columns_pts}.", end='')
+    print(f"\nPontuação na(s) coluna(s): {list_columns_pts}. ", end='')
                 
     return count_pontuacao
     
@@ -95,42 +97,36 @@ caracter_jogador_A = "a"
 escreveTitle()
 matriz = constroiMatriz(matriz)
 
-matriz = registraJogada(5, caracter_jogador_A)
-matriz = registraJogada(5, caracter_jogador_A)
-matriz = registraJogada(5, caracter_jogador_A)
 matriz = registraJogada(1, caracter_jogador_A)
 matriz = registraJogada(1, caracter_jogador_A)
 matriz = registraJogada(1, caracter_jogador_A)
-matriz = registraJogada(1, "b")
-matriz = registraJogada(1, "b")
-matriz = registraJogada(1, "b")
-matriz = registraJogada(1, "b")
-matriz = registraJogada(1, "b")
-matriz = registraJogada(3, "c")
-matriz = registraJogada(3, "c")
-matriz = registraJogada(3, "c")
-matriz = registraJogada(3, "c")
-matriz = registraJogada(3, "c")
-matriz = registraJogada(5, caracter_jogador_A)
-matriz = registraJogada(5, caracter_jogador_A)
-matriz = registraJogada(5, "c")
-matriz = registraJogada(5, caracter_jogador_A)
-matriz = registraJogada(5, caracter_jogador_A)
-matriz = registraJogada(7, caracter_jogador_A)
-matriz = registraJogada(7, caracter_jogador_A)
-matriz = registraJogada(7, caracter_jogador_A)
-matriz = registraJogada(7, caracter_jogador_A)
+matriz = registraJogada(1, caracter_jogador_A)
+matriz = registraJogada(1, caracter_jogador_A)
+matriz = registraJogada(1, caracter_jogador_A)
 
-matriz = registraJogada(11, caracter_jogador_A)
-matriz = registraJogada(11, caracter_jogador_A)
-matriz = registraJogada(11, caracter_jogador_A)
-matriz = registraJogada(11, caracter_jogador_A)
-matriz = registraJogada(11, caracter_jogador_A)
-matriz = registraJogada(11, caracter_jogador_A)
-matriz = registraJogada(11, caracter_jogador_A)
+matriz = registraJogada(3, caracter_jogador_A)
+matriz = registraJogada(3, caracter_jogador_A)
+matriz = registraJogada(3, caracter_jogador_A)
+matriz = registraJogada(3, caracter_jogador_A)
+matriz = registraJogada(3, caracter_jogador_A)
 
-# matriz[5][1] = "x"
+matriz = registraJogada(4, caracter_jogador_A)
+matriz = registraJogada(4, caracter_jogador_A)
+matriz = registraJogada(4, caracter_jogador_A)
+matriz = registraJogada(4, caracter_jogador_A)
+matriz = registraJogada(4, caracter_jogador_A)
+matriz = registraJogada(4, caracter_jogador_A)
+
+matriz = registraJogada(6, caracter_jogador_A)
+matriz = registraJogada(6, caracter_jogador_A)
+matriz = registraJogada(6, caracter_jogador_A)
+matriz = registraJogada(6, caracter_jogador_A)
+matriz = registraJogada(6, caracter_jogador_A)
+matriz = registraJogada(6, caracter_jogador_A)
+
+
 imprimeMatriz(matriz)
 pt_jogador_A = pontuacaoVertical(matriz, caracter_jogador_A)
 print(f"O Jogador A fez {pt_jogador_A} pts na vertical.")
+
 print()
