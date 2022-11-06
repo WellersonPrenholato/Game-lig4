@@ -1,7 +1,7 @@
 import math
 
 nl = 7
-nc = 13
+nc = 15
 
 matriz = [ [0 for i in range(nc)] for j in range(nl)]
 
