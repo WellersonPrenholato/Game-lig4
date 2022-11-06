@@ -6,8 +6,9 @@ Este jogo é constituído por uma estrutura de 7 colunas e 6 linhas com perfura�
 colocando as fichas pela parte de cima. Como é apresentado nas imagens abaixo.
 
 <h1 align="center">
-  <img alt="Lig4-Estrela" title="#Lig4" src="./assets/lig4-estrela.jpg" />
-  <img alt="Lig4-Gif" title="#Lig4" src="./assets/lig4-gif.gif" />
+  <img alt="Lig4-Estrela" title="#Lig4" width=22% src="./assets/lig4-estrela.jpg" />
+  <br>
+  <img alt="Lig4-Gif" title="#Lig4" width=30% src="./assets/lig4-gif.gif" />
 </h1>
 
 ## Objetivo
