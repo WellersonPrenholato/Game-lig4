@@ -30,8 +30,10 @@ da cor correspondente. O jogador com as fichas amarelas começa a partida coloca
 primeira ficha e os jogadores se revezam colocando 1 ficha de cada vez. Para vencer, 
 os jogadores devem colocar as fichas estratégicamente na base, de forma a formar uma 
 sequência com as 4 fichas da sua cor, ao mesmo tempo em que devem prestar atenção para 
-bloquear as tentativas do oponente fazer o mesmo. O primeiro jogador que conseguir 
-formar o maior número de sequência(s) com 4 peças é o vencedor.
+bloquear as tentativas do oponente fazer o mesmo. O jogador faz ponto quando uma sequência(s)
+de 4 peças da mesma cor é formada como foi apresentado no objetivo, o jogador que atingir o maior número de pontos no final da partida
+é o vencedor. O final da partida é dada após preencher todos os espaços do brinquedo.
+
 
 **Lig 4** é um jogo de regras simples, mas ao mesmo tempo bastante estratégico e divertido, 
 em que é importante prestar atenção nas jogadas do adversário para conseguir alcançar o 
