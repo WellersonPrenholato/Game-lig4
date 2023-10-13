@@ -1,41 +1,32 @@
 import math
 
-nl = 7
-nc = 15
+nl = 6
+nc = 7
 
-matriz = [ [0 for i in range(nc)] for j in range(nl)]
+caracter_jogador_A = "O"
 
 def escreveTitle():
-    print("**************************")
-    print("*****   GAME LIG 4   *****")
-    print("**************************")
+    print("  **************************")
+    print("  *****   GAME LIG 4   *****")
+    print("  **************************")
     print()
 
-def constroiMatriz(matriz):
-    index_col = 0 
+def constroiMatriz(matriz, nc: int, nl: int):
+    matriz = [['_' for _ in range(nc)] for _ in range(nl)]
 
-    for linha in range(nl):
-        for coluna in range(nc):
-            if (coluna % 2 == 0):
-                matriz[linha][coluna] = "|"
-            else:
-                matriz[linha][coluna] = "_"
-        
-                if (linha == 6): # Escreve a numeração de cada coluna na última linha
-                    index_col = index_col + 1
-                    matriz[linha][coluna] = index_col
-    return matriz           
-                    
-def imprimeMatriz(matriz): 
-    for linha in range(nl):
-        for coluna in range(nc):
-            print("%2s" % matriz[linha][coluna], end='')
-        print()
+    return matriz
+
+def imprimeMatriz(matriz, nc: int, nl: int): 
+    for i in range(nl):
+        print(' | ' + ' | '.join(matriz[i]) + f' | ')
+
+    # Imprimir rótulos das colunas
+    rotulos_colunas = ['1', '2', '3', '4', '5', '6', '7']
+    print(' | ' + ' | '.join(rotulos_colunas) + ' | ')
 
 
-def registraJogada(indice_jogada: int, caracter: str):
-    
-    col = (2 * indice_jogada) - 1 
+def registraJogada(matriz, indice_jogada: int, caracter: str):
+    col = (indice_jogada) - 1
     
     if (matriz[0][col] != "_"):
         if (col == 1):
@@ -55,20 +46,31 @@ def registraJogada(indice_jogada: int, caracter: str):
     
     return matriz
 
-# def pontuacaoHorizontal(matriz: str, caracter_jogador: str):
-#     count_pontuacao = 0
+def pontuacaoHorizontal(matriz: str, caracter_jogador: str, nc: int, nl: int):
+    count_pontuacao = 0
+    count_4 = 0
+    list_lines_pts = []
     
-#     for i in range(nl):
-#         for j in range(nc):
-#             if (j % 2 != 0):
-#                 print(f"Item: {matriz[i][j]}")
-#             # if(caracter_jogador == matriz[i][j]):
-#             #     count_pontuacao += 1
-                
-                
-#     return count_pontuacao
+    for linha in range(nl):
+        count_4 = 0
+        for coluna in range(nc):
+            if (coluna % 2 != 0): # If utilizado para verificar o conteúdo da matriz
+                # print(f"Item [{linha}][{coluna}]: {matriz[linha][coluna]}")
+                if(caracter_jogador == matriz[linha][coluna]):
+                    count_4 += 1
+                    if (count_4 == 4):
+                        count_pontuacao += 1
+                        indice_line = abs(math.ceil(linha))
+                        list_lines_pts.append(6 - indice_line)
+                        list_lines_pts.sort()
+                else:
+                    count_4 = 0
+                        
+    print(f"\nPontuação na(s) coluna(s): {list_lines_pts}. ", end='')
 
-def pontuacaoVertical(matriz: str, caracter_jogador: str):
+    return count_pontuacao
+
+def pontuacaoVertical(matriz: str, caracter_jogador: str, nc: int, nl: int):
     count_pontuacao = 0
     count_4 = 0
     list_columns_pts = []
@@ -90,43 +92,76 @@ def pontuacaoVertical(matriz: str, caracter_jogador: str):
     print(f"\nPontuação na(s) coluna(s): {list_columns_pts}. ", end='')
                 
     return count_pontuacao
+
+
+def diagonal_direita():
     
-        
-caracter_jogador_A = "a"
+    return
 
-escreveTitle()
-matriz = constroiMatriz(matriz)
+def diagonal_esquerda():
+    return
 
-matriz = registraJogada(1, caracter_jogador_A)
-matriz = registraJogada(1, caracter_jogador_A)
-matriz = registraJogada(1, caracter_jogador_A)
-matriz = registraJogada(1, caracter_jogador_A)
-matriz = registraJogada(1, caracter_jogador_A)
-matriz = registraJogada(1, caracter_jogador_A)
+def pontuacao_geral ():
+    return
+    
+def main():
 
-matriz = registraJogada(3, caracter_jogador_A)
-matriz = registraJogada(3, caracter_jogador_A)
-matriz = registraJogada(3, caracter_jogador_A)
-matriz = registraJogada(3, caracter_jogador_A)
-matriz = registraJogada(3, caracter_jogador_A)
+    matriz = [ [0 for i in range(nc)] for j in range(nl)]
 
-matriz = registraJogada(4, caracter_jogador_A)
-matriz = registraJogada(4, caracter_jogador_A)
-matriz = registraJogada(4, caracter_jogador_A)
-matriz = registraJogada(4, caracter_jogador_A)
-matriz = registraJogada(4, caracter_jogador_A)
-matriz = registraJogada(4, caracter_jogador_A)
+    escreveTitle()
+    matriz = constroiMatriz(matriz, nc, nl)
 
-matriz = registraJogada(6, caracter_jogador_A)
-matriz = registraJogada(6, caracter_jogador_A)
-matriz = registraJogada(6, caracter_jogador_A)
-matriz = registraJogada(6, caracter_jogador_A)
-matriz = registraJogada(6, caracter_jogador_A)
-matriz = registraJogada(6, caracter_jogador_A)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A)
 
+    matriz = registraJogada(matriz, 2, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 2, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 2, caracter_jogador_A)
 
-imprimeMatriz(matriz)
-pt_jogador_A = pontuacaoVertical(matriz, caracter_jogador_A)
-print(f"O Jogador A fez {pt_jogador_A} pts na vertical.")
+    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
 
-print()
+    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    
+    # matriz = registraJogada(matriz, 5, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 5, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 5, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 5, caracter_jogador_A)
+
+    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+
+    imprimeMatriz(matriz, nc, nl)
+    pt_jogador_A = pontuacaoVertical(matriz, caracter_jogador_A, nc, nl)
+    print(f"\nO Jogador A fez {pt_jogador_A} pt(s) na vertical.")
+    
+    pt_jogador_A = pontuacaoHorizontal(matriz, caracter_jogador_A, nc, nl)
+    print(f"\nO Jogador A fez {pt_jogador_A} pt(s) na horizontal.")
+
+    print()
+
+# Chamada da função main
+if __name__ == "__main__":
+    main()
