@@ -13,7 +13,10 @@ def escreveTitle():
     print("  ************************")
     print("  *****  GAME LIG 4  *****")
     print("  ************************")
+    print(f"  O jogador 1 possui o caracter: {caracter_jogador_A}")
+    print(f"  O jogador 2 possui o caracter: {caracter_jogador_B}")
     print()
+
 
 def constroiMatriz(matriz, nc: int, nl: int):
     matriz = [['_' for _ in range(nc)] for _ in range(nl)]
@@ -30,17 +33,22 @@ def imprimeMatriz(matriz, nc: int, nl: int):
     rotulos_colunas = ['1', '2', '3', '4', '5', '6', '7']
     print(' | ' + ' | '.join(rotulos_colunas) + ' | ')
 
-def registraJogada(matriz, indice_jogada: int, caracter: str):
+def registraJogada(matriz, indice_jogada: int, caracter: str, num_jogador: int):
+    
+    # Ainda falta tratar indices inexistentes na matriz. Ex: 8+
     col = (indice_jogada) - 1
     
-    if (matriz[0][col] != "_"):
+    while (matriz[0][col] != "_"):
         if (col == 1):
             coluna_jogada = 1
         else:
             coluna_jogada = abs(math.ceil(col)) + 1
             
-        print(f"Não é possível jogar na coluna {coluna_jogada}!")
-        print()
+        print(f"*** Não é possível jogar na coluna {coluna_jogada}!")
+        nova_jogada = int(input(f"\nJogador {num_jogador} jogue novamente: "))
+        col = (nova_jogada) - 1
+        
+        # print()
         
     for i in range(nl-1, -1, -1):
         if (matriz[i][col] == "_"):
@@ -94,6 +102,14 @@ def pontuacaoVertical(matriz: str, caracter_jogador: str, nc: int, nl: int):
                 
     return count_pontuacao
 
+# Verificar se é possível jogar na coluna informada. Return: true, false
+def verificaColuna(matriz: str, indx: int):
+    if (matriz[0][(indx) - 1] != "_"): # Topo da matriz
+        return False
+    else:
+        return True
+    
+
 
 def diagonal_direita():
     
@@ -106,60 +122,113 @@ def pontuacao_geral ():
     # Contabiliza todos os pontos (ambos jogadores) e apresenta uma mensagem falando que todas as posições estão ocupadas.
     return
     
-def main():
-    escreveTitle()
+# def main():
+    # escreveTitle()
     
+    # # Constrói matriz de zeros
+    # matriz = [ [0 for i in range(nc)] for j in range(nl)]
+    # matriz = constroiMatriz(matriz, nc, nl)
+    
+    # # Jogar até preencher todas as posições.
+    # # Jogar até alguém fazer o primeiro ponto
+
+    # matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 1, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 1, caracter_jogador_A)
+
+    # matriz = registraJogada(matriz, 2, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 2, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 2, caracter_jogador_A)
+
+    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 3, caracter_jogador_A)
+
+    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 4, caracter_jogador_A)
+    
+    # matriz = registraJogada(matriz, 5, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 5, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 5, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 5, caracter_jogador_A)
+
+    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    # # matriz = registraJogada(matriz, 7, caracter_jogador_A)
+
+    # imprimeMatriz(matriz, nc, nl)
+    # pt_jogador_A = pontuacaoVertical(matriz, caracter_jogador_A, nc, nl)
+    # print(f"\nO Jogador A fez {pt_jogador_A} pt(s) na vertical.")
+    
+    # pt_jogador_A = pontuacaoHorizontal(matriz, caracter_jogador_A, nc, nl)
+    # print(f"\nO Jogador A fez {pt_jogador_A} pt(s) na horizontal.")
+    
+    # verificaColuna(matriz, 1)
+
+    # print()
+    
+def mode_all_positions():
     # Constrói matriz de zeros
     matriz = [ [0 for i in range(nc)] for j in range(nl)]
     matriz = constroiMatriz(matriz, nc, nl)
-
-    matriz = registraJogada(matriz, 1, caracter_jogador_A)
-    matriz = registraJogada(matriz, 1, caracter_jogador_A)
-    matriz = registraJogada(matriz, 1, caracter_jogador_A)
-    matriz = registraJogada(matriz, 1, caracter_jogador_A)
-    matriz = registraJogada(matriz, 1, caracter_jogador_A)
-    matriz = registraJogada(matriz, 1, caracter_jogador_A)
-    matriz = registraJogada(matriz, 1, caracter_jogador_A)
-
-    matriz = registraJogada(matriz, 2, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 2, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 2, caracter_jogador_A)
-
-    matriz = registraJogada(matriz, 3, caracter_jogador_A)
-    matriz = registraJogada(matriz, 3, caracter_jogador_A)
-    matriz = registraJogada(matriz, 3, caracter_jogador_A)
-    matriz = registraJogada(matriz, 3, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 3, caracter_jogador_A)
-
-    matriz = registraJogada(matriz, 4, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 4, caracter_jogador_A)
     
-    matriz = registraJogada(matriz, 5, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 5, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 5, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 5, caracter_jogador_A)
-
-    matriz = registraJogada(matriz, 6, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
-    # matriz = registraJogada(matriz, 6, caracter_jogador_A)
+    # Jogar até preencher todas as posições.
     
-    matriz = registraJogada(matriz, 7, caracter_jogador_A)
-    matriz = registraJogada(matriz, 7, caracter_jogador_A)
-    matriz = registraJogada(matriz, 7, caracter_jogador_A)
-    matriz = registraJogada(matriz, 7, caracter_jogador_A)
-    matriz = registraJogada(matriz, 7, caracter_jogador_A)
-    matriz = registraJogada(matriz, 7, caracter_jogador_A)
-    matriz = registraJogada(matriz, 7, caracter_jogador_A)
-    matriz = registraJogada(matriz, 7, caracter_jogador_A)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A, 1)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A, 1)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A, 1)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A, 1)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A, 1)
+    matriz = registraJogada(matriz, 1, caracter_jogador_A, 1)
+
+    coluna_completa = []
+    for idx_col in range(nl):
+        if (verificaColuna(matriz, idx_col) == False):
+            coluna_completa.append(idx_col)
+            
+    while (len(coluna_completa) < nc):
+        imprimeMatriz(matriz, nc, nl)
+        print("--------------------------------")
+        # print()
+        jogador1 = int(input("Jogador 1 informe a coluna: "))
+        matriz = registraJogada(matriz, jogador1, caracter_jogador_A, 1)
+        print("O jogador 1 realizou a jogada com SUCESSO!\n")
+        
+        imprimeMatriz(matriz, nc, nl)
+        print("--------------------------------")
+        # print()
+        jogador2 = int(input("Jogador 2 informe a coluna: "))
+        matriz = registraJogada(matriz, jogador2, caracter_jogador_B, 2)
+        print("O jogador 2 realizou a jogada com SUCESSO!\n")
 
     imprimeMatriz(matriz, nc, nl)
+    print(f"Colunas completas: {coluna_completa}\n")
+
+    print("Não é possível realizar mais jogadas!" +
+        "\n*** JOGO ENCERRADO!\n")
+    
     pt_jogador_A = pontuacaoVertical(matriz, caracter_jogador_A, nc, nl)
     print(f"\nO Jogador A fez {pt_jogador_A} pt(s) na vertical.")
     
@@ -168,6 +237,29 @@ def main():
 
     print()
 
-# Chamada da função main
+def mode_one_gold():
+    
+    print()
+
+
 if __name__ == "__main__":
-    main()
+    
+    print ("Informe o modo do jogo que deseja jogar:")
+    print("1 - Preencha todas as posições. ")
+    print("2 - Quem fizer o primeiro ponto ganha.")
+    
+    entrada = int(input("Informe: "))
+    
+    escreveTitle()
+    
+    if entrada == 1:
+        mode_all_positions()
+    elif (entrada == 2):
+        mode_one_gold()
+    else:
+        print("O valor informado não corresponde as opções informadas.\n")
+        exit()
+    
+    # print()
+    
+    # main()
