@@ -30,7 +30,7 @@ def imprimeMatriz(matriz, nc: int, nl: int):
         indx_linha-=1
 
     # Imprimir rótulos das colunas
-    rotulos_colunas = ['1', '2', '3', '4', '5', '6', '7']
+    rotulos_colunas = [str(i) for i in range(1, nc + 1, 1)]
     print(' | ' + ' | '.join(rotulos_colunas) + ' | ')
 
 def registraJogada(matriz, indice_jogada: int, caracter: str, num_jogador: int):
@@ -208,6 +208,7 @@ def mode_all_positions():
         if (verificaColuna(matriz, idx_col) == False):
             coluna_completa.append(idx_col)
             
+    # Ainda falta corrigir quando toda matriz fica preenchida
     while (len(coluna_completa) < nc):
         imprimeMatriz(matriz, nc, nl)
         print("--------------------------------")
