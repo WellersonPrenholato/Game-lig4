@@ -33,31 +33,79 @@ def imprimeMatriz(matriz, nc: int, nl: int):
     rotulos_colunas = [str(i) for i in range(1, nc + 1, 1)]
     print(' | ' + ' | '.join(rotulos_colunas) + ' | ')
 
-def registraJogada(matriz, indice_jogada: int, caracter: str, num_jogador: int):
+# def registraJogada(matriz, indice_jogada: int, caracter: str, num_jogador: int):
     
-    # Ainda falta tratar indices inexistentes na matriz. Ex: 8+
-    col = (indice_jogada) - 1
-    
-    while (matriz[0][col] != "_"):
-        if (col == 1):
-            coluna_jogada = 1
-        else:
-            coluna_jogada = abs(math.ceil(col)) + 1
+#     # Ainda falta tratar indices inexistentes na matriz. Ex: 8+
+#     col_jogada = (indice_jogada) - 1
+#     if (indice_jogada < nc and indice_jogada > 0):
+#         while (matriz[0][col_jogada] != "_"):
+#             print(f"indice jogada: {indice_jogada}\n")
+#             # if (col == 1):
+#             #     coluna_jogada = 1
+#             # else:
+#             #     # coluna_jogada = abs(math.ceil(col)) + 1
+#             #     coluna_jogada = indice_jogada
+#             print("primeiro!\n")
+#             print(f"*** Não é possível jogar na coluna {col_jogada}!")
+#             nova_jogada = int(input(f"\nJogador {num_jogador} jogue novamente: "))
+#             col_jogada = (nova_jogada) - 1
+#     else:
+#         while (indice_jogada >= nc):
+#             # coluna_jogada = indice_jogada
+#             # coluna_jogada = abs(math.ceil(col)) + 1
             
-        print(f"*** Não é possível jogar na coluna {coluna_jogada}!")
-        nova_jogada = int(input(f"\nJogador {num_jogador} jogue novamente: "))
-        col = (nova_jogada) - 1
-        
-        # print()
-        
-    for i in range(nl-1, -1, -1):
-        if (matriz[i][col] == "_"):
-            matriz[i][col] = caracter
-            break
-        if (matriz[i][col] != "_"):
-            continue
+#             print("segundo!\n")
+#             print(f"*** Não é possível jogar na coluna {col_jogada}!")
+#             nova_jogada = int(input(f"\nJogador {num_jogador} jogue novamente: "))
+#             col_jogada = (nova_jogada) - 1
+#             # print()
+
+#     for i in range(nl-1, -1, -1):
+#         if (matriz[i][col_jogada] == "_"):
+#             matriz[i][col_jogada] = caracter
+#             break
+#         if (matriz[i][col_jogada] != "_"):
+#             continue
     
-    return matriz
+#     return matriz
+
+def registraJogada(matriz, indice_jogada: int, caracter: str, num_jogador: int):
+    while True:
+        col_jogada = (indice_jogada) - 1
+        jogada_valida = False
+
+        while not jogada_valida:
+            if 0 <= col_jogada < nc:
+                if matriz[0][col_jogada] != "_":
+                    print(f"Coluna da jogada: {indice_jogada}")
+                    print(f"*** Não é possível jogar na coluna {col_jogada + 1}!")
+                    print()
+                    nova_jogada = input(f"Jogador {num_jogador}, insira um novo valor: ")
+                    if nova_jogada.strip() == "":
+                        print("Nenhum valor foi inserido. Insira um número válido.")
+                    elif nova_jogada.isdigit():
+                        col_jogada = int(nova_jogada) - 1
+                    else:
+                        print("Valor inválido. Insira um número válido.")
+                else:
+                    jogada_valida = True
+            else:
+                print(f"Índice de jogada fora do alcance. Escolha um valor entre 1 e {nc}.")
+                print()
+                nova_jogada = input(f"Jogador {num_jogador}, insira um novo valor: ")
+                if nova_jogada.strip() == "":
+                    print("Nenhum valor foi inserido. Insira um número válido.")
+                elif nova_jogada.isdigit():
+                    col_jogada = int(nova_jogada) - 1
+                else:
+                    print("Valor inválido. Insira um número válido.")
+
+        for i in range(nl - 1, -1, -1):
+            if matriz[i][col_jogada] == "_":
+                matriz[i][col_jogada] = caracter
+                break
+            
+        return matriz
 
 def pontuacaoHorizontal(matriz: str, caracter_jogador: str, nc: int, nl: int):
     count_pontuacao = 0
