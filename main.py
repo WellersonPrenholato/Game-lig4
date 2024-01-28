@@ -1,7 +1,6 @@
 import math
 from jogadas import registraJogada
-from pontuacao_horizontal import *
-from pontuacao_vertical import *
+from pontuacao import *
 
 nl = 6
 nc = 7
