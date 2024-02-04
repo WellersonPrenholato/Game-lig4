@@ -1,5 +1,6 @@
 import math
 
+# Pontuação reta.
 def pontuacaoHorizontal(matriz: str, caracter_jogador: str, nc: int, nl: int):
     count_pontuacao = 0
     count_4 = 0
@@ -17,9 +18,7 @@ def pontuacaoHorizontal(matriz: str, caracter_jogador: str, nc: int, nl: int):
                     list_lines_pts.sort()
             else:
                 count_4 = 0
-                        
-    print(f"\nPontuação na(s) linha(s): {list_lines_pts}. ", end='')
-    return count_pontuacao
+    return count_pontuacao, list_lines_pts
 
 def pontuacaoVertical(matriz: str, caracter_jogador: str, nc: int, nl: int):
     count_pontuacao = 0
@@ -37,6 +36,15 @@ def pontuacaoVertical(matriz: str, caracter_jogador: str, nc: int, nl: int):
                     list_columns_pts.append(indice_col + 1)
             else:
                 count_4 = 0
-                        
-    print(f"\nPontuação na(s) coluna(s): {list_columns_pts}. ", end='')
-    return count_pontuacao
+    return count_pontuacao, list_columns_pts
+
+# Pontuação diagonal.
+def diagonal_direita():
+    return
+
+def diagonal_esquerda():
+    return
+
+def pontuacao_geral ():
+    # Contabiliza todos os pontos (ambos jogadores) e apresenta uma mensagem falando que todas as posições estão ocupadas.
+    return
