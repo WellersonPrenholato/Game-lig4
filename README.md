@@ -46,7 +46,15 @@ maior número de pontos e consecutivamente a vitória.
 O propósito do código é simular o jogo descrito acima através de um terminal.
 Segue imagem de exemplo.
 
-## 📚 Referência
+## � Como executar
+
+1. Certifique-se de ter Python 3 instalado.
+2. Clone ou baixe o repositório.
+3. Navegue até a pasta do projeto.
+4. Execute o comando: `python main.py`
+5. Escolha o modo de jogo (1 ou 2) e siga as instruções no terminal.
+
+## �📚 Referência
 
 [Wikipedia - Connect Four](https://en.wikipedia.org/wiki/Connect_Four)
 
